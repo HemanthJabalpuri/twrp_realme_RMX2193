@@ -1,12 +1,3 @@
-/system		        ext4	/dev/block/mapper/system                                flags=backup=1;display="System"
-/vendor                 ext4    /dev/block/mapper/vendor                                flags=backup=1;display="Vendor"
-/system_image	        emmc	/dev/block/mapper/system                                flags=backup=1;display="System Image";flashimg=1
-/vendor_image	        emmc	/dev/block/mapper/vendor                                flags=backup=1;display="Vendor Image";flashimg=1
-
-oppo_product	/oppo_product		ext4		display="oppo_product";
-oppo_engineering		/oppo_engineering	ext4		display="oppo_engineering";
-preload_common	/common_preload		ext4		display="preload_common";
-
 /proinfo		emmc	/dev/block/platform/bootdevice/by-name/proinfo		flags=display="proinfo";backup=1
 /nvram			emmc	/dev/block/platform/bootdevice/by-name/nvram		flags=display="nvram";backup=1;flashimg=1
 /protect_f		ext4	/dev/block/platform/bootdevice/by-name/protect1		flags=display="protect_f";backup=1
@@ -32,6 +23,6 @@ preload_common	/common_preload		ext4		display="preload_common";
 /data			ext4	/dev/block/platform/bootdevice/by-name/userdata		flags=fileencryption=aes-256-cts
 
 /external_sd		auto	/dev/block/mmcblk1p1	/dev/block/mmcblk1		flags=display="External SDcard";storage;wipeingui;removable;backup=0
-/usbotg			auto    /dev/block/sda1		/dev/block/sda			flags=display="Usb-Otg";storage;wipeingui;removable;backup=0
+/usb-otg			auto    /dev/block/sda1		/dev/block/sda			flags=display="Usb-Otg";storage;wipeingui;removable;backup=0
 /dtbo emmc /dev/block/platform/bootdevice/by-name/dtbo flags=display="DTBo";backup=1
 /vbmeta emmc /dev/block/platform/bootdevice/by-name/vbmeta flags=display="VBmeta";backup=1

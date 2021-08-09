@@ -30,7 +30,7 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
     seclabel u:r:recovery:s0
 
 #Add for OPPO FBE
-service hal_cryptoeng_oppo /system/bin/vendor.oppo.hardware.cryptoeng@1.0-service
+service hal_cryptoeng_oppo /system/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
     user root
     group root drmrpc
     disabled
@@ -42,20 +42,11 @@ service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.truston
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
-
-service vendor.vibrator-1-0 /system/bin/android.hardware.vibrator@1.0-service
-    class hal
-    user root
-    group root input
-    seclabel u:r:recovery:s0
-
-on boot
-    start vendor.vibrator-1-0
 
 on property:hwservicemanager.ready=true
     start hal_cryptoeng_oppo

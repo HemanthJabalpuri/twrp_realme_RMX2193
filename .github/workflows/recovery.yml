@@ -34,7 +34,7 @@ jobs:
         sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
         sudo -E apt-get clean
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex bison aria2
+        sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex bison aria2 schedtool
         sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
         sudo chmod a+rx /usr/local/bin/repo
 
@@ -42,7 +42,7 @@ jobs:
       run: |
         mkdir work
         cd work
-        repo init -u $MANIFEST -b $MANIFEST_BRANCH
+        repo init --depth=1 -u $MANIFEST -b $MANIFEST_BRANCH
         repo sync
         git clone $DT_LINK --depth=1 --single-branch $DT_PATH
 

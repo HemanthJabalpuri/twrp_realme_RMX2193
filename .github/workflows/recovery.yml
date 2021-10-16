@@ -9,11 +9,11 @@ on:
     types: [started]
 
 env:
-  MANIFEST: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git
-  MANIFEST_BRANCH: twrp-7.1
-  DEVICE: Y15S
-  DT_LINK: https://github.com/HemanthJabalpuri/twrp_vivo_Y15S
-  DT_PATH: device/vivo/Y15S
+  MANIFEST: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git
+  MANIFEST_BRANCH: twrp-11
+  DEVICE: RMX2185
+  DT_LINK: https://github.com/HemanthJabalpuri/twrp_realme_RMX2185 -b test
+  DT_PATH: device/realme/RMX2185
   TARGET: recoveryimage
   TZ: Asia/Kolkata
 
@@ -46,9 +46,18 @@ jobs:
         repo sync
         git clone $DT_LINK --depth=1 --single-branch $DT_PATH
 
+    - name: Applying patches
+      run: |
+        cd work
+        cd bootable/recovery
+        curl -sL https://github.com/HemanthJabalpuri/twrp_realme_RMX2185/files/6992094/0001-Provide-an-option-to-skip-compatibility.zip-check.patch-a11.txt | patch -p1 -b
+        curl -sL https://github.com/HemanthJabalpuri/twrp_realme_RMX2185/files/7350748/0001-String-fixes-and-added-some-shell-functions-a11.patch.txt | patch -p1 -b
+        curl -sL https://github.com/HemanthJabalpuri/twrp_realme_RMX2185/files/7350752/0001-Super-as-Super-only.patch-a11.txt | patch -p1 -b
+        curl -sL https://github.com/HemanthJabalpuri/twrp_realme_RMX2185/files/6991161/NotchFix.patch.txt | patch -p1 -b
+
     - name: Build
       run: |
-        cd work && . build/envsetup.sh && lunch omni_$DEVICE-eng && mka $TARGET
+        cd work && export ALLOW_MISSING_DEPENDENCIES=true && . build/envsetup.sh && lunch omni_$DEVICE-eng && mka $TARGET
 
     - name: Upload recovery image
       run: |

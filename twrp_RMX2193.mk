@@ -26,7 +26,7 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 PRODUCT_DEVICE := RMX2193
 PRODUCT_NAME := twrp_RMX2193
 PRODUCT_BRAND := realme
-PRODUCT_MODEL := Narzo 20 / 7i (EU)
+PRODUCT_MODEL := RMX2193
 PRODUCT_MANUFACTURER := realme
 
 PRODUCT_SHIPPING_API_LEVEL := 29
